@@ -1,0 +1,11 @@
+# example:
+# java -jar "c:\Apps\nexus-iq-cli.jar" @cli-params.txt "c:\Apps\js_juiceshop"
+
+-i
+js_juiceshop
+-a 
+admin:admin123 
+-s
+http://10.0.0.150:8070 
+-t 
+build
