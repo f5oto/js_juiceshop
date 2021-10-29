@@ -5,17 +5,21 @@
 
 trigger:
 - master
-
 pool:
-  vmImage: 'ubuntu-latest' # examples of other options: 'macOS-10.15', 'windows-latest'
-
-- task: Npm@0
+  vmImage: 'ubuntu-latest'
+steps:
+- task: NodeTool@0
   inputs:
-     command: 'install'
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build' 
 
 - task: NexusIqPipelineTask@1
   inputs:
-    nexusIqService: 'IQ Server'
-    applicationId: 'js_juiceshop'
-    stage: 'build'
+    nexusIqService: 'ngrok'
+    applicationId: 'az\ure_juiceshop'
+    stage: 'Build'
     continueOnError: true
