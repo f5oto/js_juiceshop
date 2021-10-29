@@ -1,0 +1,21 @@
+# Node
+# Build your Node project and run tests
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest' # examples of other options: 'macOS-10.15', 'windows-latest'
+
+- task: Npm@0
+  inputs:
+     command: 'install'
+
+- task: NexusIqPipelineTask@1
+  inputs:
+    nexusIqService: 'IQ Server'
+    applicationId: 'js_juiceshop'
+    stage: 'build'
+    continueOnError: true
